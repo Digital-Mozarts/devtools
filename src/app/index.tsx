@@ -117,7 +117,7 @@ export const App = () => {
           >
             <img
               src={!dark ? logo : logoWhite}
-              alt="GrowthBook"
+              alt="ScaleX AI"
               className="inline-block mb-1 flex-shrink-0 mt-0.5 -mr-2"
               style={{ width: 120 }}
             />

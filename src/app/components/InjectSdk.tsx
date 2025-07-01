@@ -91,7 +91,7 @@ const InjectSdkForm = ({
       </Form.Field>
 
       <Form.Field className="FormField" name="sdkApiHost">
-        <Form.Label className="FormLabel">GrowthBook API Host</Form.Label>
+        <Form.Label className="FormLabel">ScaleX AI API Host</Form.Label>
         <Form.Control asChild>
           <div className="rt-TextFieldRoot rt-r-size-2 rt-variant-surface">
             <input

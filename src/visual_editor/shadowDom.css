@@ -77,3 +77,51 @@
 input, select, textarea {
   @apply text-black;
 }
+
+:root {
+  --primary-color: #0066CC;
+  --navy-color: #001F3F;
+  --purple-color: #8A2BE2;
+  --dark-blue: #00008B;
+  --light-blue: #33C3F0;
+  --background-color: #001F3F;
+  --accent-color: #8A2BE2;
+  --text-color: #ffffff;
+  --header-bg: #00008B;
+  --button-bg: #0066CC;
+  --button-hover-bg: #33C3F0;
+  --border-color: #8A2BE2;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+.visual-editor-header {
+  background: var(--header-bg);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.visual-editor-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--light-blue);
+}
+
+button, .button {
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px 16px;
+  transition: background 0.2s;
+}
+button:hover, .button:hover {
+  background: var(--button-hover-bg);
+}

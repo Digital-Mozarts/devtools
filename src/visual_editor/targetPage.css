@@ -22,3 +22,17 @@
 [contenteditable]:focus {
   outline: 0px solid transparent;
 }
+
+/* ScaleX AI highlight styles */
+.highlight-outline {
+  outline: 3px solid #8A2BE2 !important;
+  box-shadow: 0 0 0 4px #8A2BE233, 0 0 8px #8A2BE244;
+}
+.selected-element {
+  background: #8A2BE222 !important;
+  border: 3px solid #8A2BE2;
+}
+.ghost-element {
+  background: #8A2BE211 !important;
+  border: 2px dashed #8A2BE2;
+}

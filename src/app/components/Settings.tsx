@@ -67,7 +67,7 @@ const SettingsForm = ({ close }: { close: () => void }) => {
   return (
     <Form.Root className="FormRoot" onSubmit={submitForm}>
       <Form.Field className="FormField" name={API_KEY}>
-        <Form.Label className="FormLabel">GrowthBook Access Token</Form.Label>
+        <Form.Label className="FormLabel">ScaleX AI Access Token</Form.Label>
         <Form.Control asChild>
           <div className="rt-TextFieldRoot rt-r-size-2 rt-variant-surface">
             <input
@@ -106,14 +106,14 @@ const SettingsForm = ({ close }: { close: () => void }) => {
           />
         </Form.Control>
         <Form.Label className="FormLabel cursor-pointer">
-          GrowthBook Cloud
+          ScaleX AI Cloud
         </Form.Label>
       </Form.Field>
 
       {!form.watch("isCloud") && (
         <>
           <Form.Field className="FormField" name={API_HOST}>
-            <Form.Label className="FormLabel">GrowthBook API Host</Form.Label>
+            <Form.Label className="FormLabel">ScaleX AI API Host</Form.Label>
             <Form.Control asChild>
               <div className="rt-TextFieldRoot rt-r-size-2 rt-variant-surface">
                 <input
@@ -125,7 +125,7 @@ const SettingsForm = ({ close }: { close: () => void }) => {
           </Form.Field>
 
           <Form.Field className="FormField" name={APP_ORIGIN}>
-            <Form.Label className="FormLabel">GrowthBook App Origin</Form.Label>
+            <Form.Label className="FormLabel">ScaleX AI App Origin</Form.Label>
             <Form.Control asChild>
               <div className="rt-TextFieldRoot rt-r-size-2 rt-variant-surface">
                 <input

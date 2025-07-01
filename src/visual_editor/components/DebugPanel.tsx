@@ -48,7 +48,7 @@ export default function DebugPanel({
       </Row>
 
       <Row>
-        GrowthBook SDK:
+        ScaleX AI SDK:
         <ul className="list-disc ml-4">
           <li className="text-white">
             {hasSDK ? (

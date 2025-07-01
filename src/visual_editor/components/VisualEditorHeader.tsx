@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, useEffect, useState } from "react";
 import { clsx } from "clsx";
-import GBLogo from "../../../public/logo128.png";
+import scalexLogo from "../../scalex_ai_logo.png";
 
 // used to determine x y delta of mouse movement
 let originX: number | undefined;
@@ -15,6 +15,7 @@ const VisualEditorHeader: FC<{
   reverseX?: boolean;
   reverseY?: boolean;
   children?: ReactNode;
+  onToggleHighlight: () => void;
 }> = ({
   x,
   y,
@@ -23,6 +24,7 @@ const VisualEditorHeader: FC<{
   className = "",
   reverseX = false,
   reverseY = false,
+  onToggleHighlight,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
 
@@ -64,12 +66,14 @@ const VisualEditorHeader: FC<{
         setIsDragging(false);
       }}
     >
-      <div className="flex px-4 h-12 items-center justify-center rounded-t-xl logo-bg">
-        <div className="h-8">
-          <img src={GBLogo} alt="GB Logo" className="w-auto h-full mr-1" />
-        </div>
-        <div className="font-semibold text-white">GrowthBook Visual Editor</div>
-      </div>
+      <div style={{background:'#8A2BE2',color:'#fff',padding:'6px 0',textAlign:'center',fontWeight:'bold',fontSize:'1.1rem'}}>ScaleX AI Mode Active</div>
+      <header className="visual-editor-header">
+        <img src={scalexLogo} alt="ScaleX AI" style={{ height: 32, marginRight: 12 }} />
+        <span className="visual-editor-title">ScaleX AI Visual Editor</span>
+        <button style={{marginLeft:'auto',background:'#8A2BE2',color:'#fff',border:'none',borderRadius:4,padding:'6px 12px',cursor:'pointer'}} onClick={onToggleHighlight}>
+          Toggle Highlight
+        </button>
+      </header>
     </div>
   );
 };

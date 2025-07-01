@@ -29,7 +29,7 @@ const ErrorDisplay: FC<ErrorDisplayProps> = ({ error, cspError }) => {
       return (
         <div className="p-4 text-red-400 text-sm">
           <p className="mb-2">
-            GrowthBook API credentials did not reach the Chrome Extension.
+            ScaleX AI API credentials did not reach the Chrome Extension.
           </p>
           <p>
             Please set your API host and key in the DevTools extension settings

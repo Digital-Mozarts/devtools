@@ -199,10 +199,14 @@ const VisualEditor: FC<{}> = () => {
   useEffect(() => {
     resetAndStopInlineEditing();
   }, [mode]);
+
+  const [highlightOn, setHighlightOn] = useState(true);
+  const handleToggleHighlight = () => setHighlightOn(h => !h);
+
   return (
     <>
       <VisualEditorPane style={parentStyles}>
-        <VisualEditorHeader reverseX x={x} y={y} setX={setX} setY={setY} />
+        <VisualEditorHeader reverseX x={x} y={y} setX={setX} setY={setY} onToggleHighlight={handleToggleHighlight} />
 
         <VariationSelector
           variations={variations}
@@ -352,7 +356,7 @@ const VisualEditor: FC<{}> = () => {
       </VisualEditorPane>
 
       {/** Overlays for highlighting selected elements **/}
-      {mode === "edit" && elementUnderEdit && !isDragging ? (
+      {mode === "edit" && elementUnderEdit && !isDragging && highlightOn ? (
         <>
           <FloatingFrame
             hideOverlay={isDragging}

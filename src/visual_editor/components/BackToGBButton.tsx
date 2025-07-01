@@ -14,7 +14,7 @@ const BackToGBButton: FC<{
       }
     }}
   >
-    Back to GrowthBook
+    Back to ScaleX AI
   </button>
 );
 
