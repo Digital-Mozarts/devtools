@@ -6,6 +6,10 @@ import {
   visualEditorTransformCopyRequest,
   visualEditorUpdateChangesetRequest,
 } from "@/content_script/pageMessageHandlers";
+import { initializeAutoVisualEditor } from "@/content_script/autoVisualEditor";
+import { setupManualTrigger } from "@/content_script/manualTrigger";
+import { createDebugHelper } from "@/content_script/debugHelper";
+import { createSimpleTest } from "@/content_script/simpleTest";
 
 const forceLoadVisualEditor = false;
 let tabId: number | undefined;
@@ -202,17 +206,32 @@ if (!document.getElementById(DEVTOOLS_SCRIPT_ID)) {
 
 // Inject visual editor content script
 const VISUAL_EDITOR_SCRIPT_ID = "visual-editor-script";
+const visualEditorParams = loadVisualEditorQueryParams();
+console.log("[GrowthBook Extension] Visual editor params:", visualEditorParams);
+console.log("[GrowthBook Extension] Force load visual editor:", forceLoadVisualEditor);
+
 if (
   !document.getElementById(VISUAL_EDITOR_SCRIPT_ID) &&
-  (!!loadVisualEditorQueryParams() || forceLoadVisualEditor)
+  (!!visualEditorParams || forceLoadVisualEditor)
 ) {
+  console.log("[GrowthBook Extension] Loading visual editor script...");
   const script = document.createElement("script");
   script.id = VISUAL_EDITOR_SCRIPT_ID;
   script.async = true;
   script.charset = "utf-8";
   script.src = chrome.runtime.getURL("js/visual_editor.js");
 
+  script.onload = () => {
+    console.log("[GrowthBook Extension] Visual editor script loaded successfully");
+  };
+  
+  script.onerror = (error) => {
+    console.error("[GrowthBook Extension] Failed to load visual editor script:", error);
+  };
+
   document.body.appendChild(script);
+} else {
+  console.log("[GrowthBook Extension] Visual editor not loaded - conditions not met");
 }
 // check if the storage has been removed and reload the data from embed script
 window.addEventListener("storage", (event) => {
@@ -243,3 +262,15 @@ if (navigator.userAgent.includes("Firefox")) {
   });
   chrome.runtime.sendMessage({ action: "GET_TAB_ID" });
 }
+
+// Initialize auto visual editor if page has credentials
+initializeAutoVisualEditor();
+
+// Setup manual trigger for testing
+setupManualTrigger();
+
+// Setup debug helper with multiple methods
+createDebugHelper();
+
+// Setup simple test
+createSimpleTest();

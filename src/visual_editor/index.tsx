@@ -20,6 +20,7 @@ import useCustomJs from "./lib/hooks/useCustomJs";
 import useEditMode from "./lib/hooks/useEditMode";
 import useDragAndDrop from "./lib/hooks/useDragAndDrop";
 import useSDKDiagnostics from "./lib/hooks/useSDKDiagnostics";
+import useAutoCreateChangeset from "./lib/hooks/useAutoCreateChangeset";
 
 import Toolbar, { VisualEditorMode } from "./components/Toolbar";
 import ElementDetails from "./components/ElementDetails";
@@ -44,12 +45,15 @@ import AICopySuggestor from "./components/AICopySuggestor";
 import FloatingUndoButton from "./components/FloatingUndoButton";
 import MoveElementHandle from "./components/MoveElementHandle";
 import DebugPanel from "./components/DebugPanel";
+import CreateChangesetLoader from "./components/CreateChangesetLoader";
 
 import VisualEditorCss from "./shadowDom.css";
 import "./targetPage.css";
 import { isGlobalObserverPaused, resumeGlobalObserver } from "dom-mutator";
 
 const VisualEditor: FC<{}> = () => {
+  console.log("[GrowthBook Visual Editor] Component mounting...");
+  
   const { x, y, setX, setY, parentStyles } = useFixedPositioning({
     x: 24,
     y: 24,
@@ -63,6 +67,16 @@ const VisualEditor: FC<{}> = () => {
     hasAiEnabled,
     cleanUpParams,
   } = useQueryParams();
+
+  console.log("[GrowthBook Visual Editor] Initial params:", {
+    visualChangesetId,
+    variationIndex,
+    hasAiEnabled,
+    allParams: params
+  });
+
+  // Auto-create visual changeset if missing
+  const { isCreating, error: createError, vcId } = useAutoCreateChangeset(visualChangesetId);
 
   const {
     error,
@@ -202,6 +216,11 @@ const VisualEditor: FC<{}> = () => {
 
   const [highlightOn, setHighlightOn] = useState(true);
   const handleToggleHighlight = () => setHighlightOn(h => !h);
+
+  // Show loader if creating changeset
+  if (isCreating || createError) {
+    return <CreateChangesetLoader isCreating={isCreating} error={createError} />;
+  }
 
   return (
     <>
